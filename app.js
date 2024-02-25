@@ -42,7 +42,7 @@ app.post('/players/', async (request, response) => {
   let c = await db.run(inserted)
   response.send('Player Added to Team')
 })
-app.get('/players/:playerId', async (request, response) => {
+app.get('/players/:playerId/', async (request, response) => {
   let {playerId} = request.params
   let get_players = `SELECT *
                    FROM cricket_team
@@ -50,7 +50,7 @@ app.get('/players/:playerId', async (request, response) => {
   let p = await db.run(get_players)
   response.send(p)
 })
-app.put('/players/:playerId', async (request, response) => {
+app.put('/players/:playerId/', async (request, response) => {
   let {playerId} = request.params
   let details = request.body
   let {playerName, jerseyNumber, role} = details
@@ -63,7 +63,7 @@ app.put('/players/:playerId', async (request, response) => {
   let o = await db.run(updated_details)
   response.send('Player Details Updated')
 })
-app.delete('/players/:playerId', async (request, response) => {
+app.delete('/players/:playerId/', async (request, response) => {
   let {playerId} = request.params
   let i = `DELETE FROM cricket_team
          WHERE player_id=${playerId}`
