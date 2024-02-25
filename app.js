@@ -38,7 +38,7 @@ app.post('/players/', async (request, response) => {
   let {playerName, jerseyNumber, role} = j
   let inserted = `INSERT INTO cricket_team
                   (player_name,jersey_number,role)
-                  VALUES(${playerName},${jerseyNumber},${role};`
+                  VALUES("${playerName}",${jerseyNumber},"${role}");`
   let c = await db.run(inserted)
   response.send('Player Added to Team')
 })
@@ -56,9 +56,9 @@ app.put('/players/:playerId', async (request, response) => {
   let {playerName, jerseyNumber, role} = details
   let updated_details = `UPDATE cricket_team
                       SET 
-                      player_id=${playerName},
+                      player_id="${playerName}",
                       jersey_number=${jerseyNumber},
-                      role=${role}
+                      role="${role}"
                       WHERE player_id=${playerId};`
   let o = await db.run(updated_details)
   response.send('Player Details Updated')
